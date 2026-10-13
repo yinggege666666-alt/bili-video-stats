@@ -91,6 +91,27 @@
     </section>
   </main>
 
+  <div id="passwordModal" class="modal" hidden>
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="passwordTitle">
+      <div class="modal-head">
+        <div>
+          <p class="eyebrow">权限验证</p>
+          <h2 id="passwordTitle">请输入管理密码</h2>
+        </div>
+        <button id="closePasswordBtn" class="icon-button" type="button" aria-label="关闭">&times;</button>
+      </div>
+      <div class="modal-body">
+        <input id="passwordInput" class="input password-input" type="password" placeholder="输入管理密码" autocomplete="off">
+        <p id="passwordError" class="message error" role="status"></p>
+      </div>
+      <div class="modal-foot">
+        <button id="cancelPasswordBtn" class="btn btn-outline" type="button">取消</button>
+        <button id="confirmPasswordBtn" class="btn btn-primary" type="button">确认</button>
+      </div>
+    </div>
+  </div>
+
   <div id="chartTooltip" class="chart-tooltip" hidden></div>
 
   <script src="./charts.js"></script>

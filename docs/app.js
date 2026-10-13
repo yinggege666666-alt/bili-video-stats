@@ -110,6 +110,14 @@
   const tableHead = document.querySelector("#videoTable thead");
   const periodButtons = document.querySelectorAll("#periodButtons button");
 
+  const passwordModal = document.getElementById("passwordModal");
+  const passwordInput = document.getElementById("passwordInput");
+  const passwordError = document.getElementById("passwordError");
+  const confirmPasswordBtn = document.getElementById("confirmPasswordBtn");
+  const cancelPasswordBtn = document.getElementById("cancelPasswordBtn");
+  const closePasswordBtn = document.getElementById("closePasswordBtn");
+  let pendingProtectedAction = null;
+
   function escapeHtml(value) {
     return String(value)
       .replace(/&/g, "&amp;")
@@ -815,6 +823,32 @@
     }
   }
 
+  function closePasswordModal() {
+    passwordModal.hidden = true;
+    pendingProtectedAction = null;
+    passwordInput.value = "";
+    passwordError.textContent = "";
+  }
+
+  function submitPassword() {
+    if (passwordInput.value !== "9578") {
+      passwordError.textContent = "密码错误，请重试";
+      passwordInput.select();
+      return;
+    }
+    const action = pendingProtectedAction;
+    closePasswordModal();
+    if (action) action();
+  }
+
+  function askPassword(action) {
+    pendingProtectedAction = action;
+    passwordError.textContent = "";
+    passwordInput.value = "";
+    passwordModal.hidden = false;
+    window.setTimeout(() => passwordInput.focus(), 0);
+  }
+
   function openIssue(title, body) {
     const repoUrl = (state.data && state.data.repo_url) || "";
     if (!repoUrl) {
@@ -860,14 +894,18 @@
       setMessage("BV号格式不正确，示例：BV1o9uy6jEyM", "error");
       return;
     }
-    openIssue("添加视频 " + bvid, "请添加视频：" + bvid);
+    askPassword(function () {
+      openIssue("添加视频 " + bvid, "请添加视频：" + bvid);
+    });
   }
 
   function deleteVideo(bvid) {
     if (!window.confirm("确定从跟踪列表中删除 " + bvid + " 吗？")) {
       return;
     }
-    openIssue("删除视频 " + bvid, "请删除视频：" + bvid);
+    askPassword(function () {
+      openIssue("删除视频 " + bvid, "请删除视频：" + bvid);
+    });
   }
 
   searchInput.addEventListener("input", () => {
@@ -876,6 +914,19 @@
   });
 
   refreshBtn.addEventListener("click", () => loadDashboard(true));
+
+  confirmPasswordBtn.addEventListener("click", submitPassword);
+  cancelPasswordBtn.addEventListener("click", closePasswordModal);
+  closePasswordBtn.addEventListener("click", closePasswordModal);
+  passwordInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") submitPassword();
+  });
+  passwordModal.addEventListener("click", (event) => {
+    if (event.target.closest("[data-close-modal]")) closePasswordModal();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !passwordModal.hidden) closePasswordModal();
+  });
 
   addForm.addEventListener("submit", (event) => {
     event.preventDefault();
