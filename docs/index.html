@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B站视频数据跟踪</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <h1>B站视频数据跟踪</h1>
+        <p id="statusLine" class="status-line">正在加载数据…</p>
+      </div>
+      <div class="top-actions">
+        <input id="searchInput" class="input search-input" type="search" placeholder="搜索标题或BV号" autocomplete="off">
+        <button id="refreshBtn" class="btn btn-outline" type="button">刷新数据</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="add-bar" aria-label="添加视频">
+      <form id="addForm" class="add-form">
+        <input id="bvInput" class="input" type="text" placeholder="输入BV号，例如 BV1o9uy6jEyM" autocomplete="off">
+        <button class="btn btn-primary" type="submit">添加视频</button>
+      </form>
+      <span class="cloud-hint">云端每小时自动更新；添加/删除后约一小时内生效</span>
+      <span id="message" class="message" role="status"></span>
+    </section>
+
+    <section class="chart-head">
+      <div class="chart-tools">
+        <h2>单视频数据趋势</h2>
+        <select id="videoSelect" class="input select-input" aria-label="选择视频"></select>
+      </div>
+      <div id="periodButtons" class="segmented" role="group" aria-label="图表时间范围">
+        <button type="button" data-days="7">近7天</button>
+        <button type="button" data-days="30" class="active">近30天</button>
+        <button type="button" data-days="0">全部</button>
+      </div>
+    </section>
+
+    <section id="cards" class="cards" aria-label="单视频趋势卡片"></section>
+
+    <section class="table-section">
+      <div class="table-head">
+        <h2>视频数据</h2>
+        <div class="table-tools">
+          <span id="tableCount" class="table-count"></span>
+          <select id="sortSelect" class="input select-input sort-select" aria-label="排序字段"></select>
+          <button id="sortDirBtn" class="btn btn-outline sort-dir-btn" type="button" aria-label="切换排序方向">升序 ↑</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table id="videoTable">
+          <thead>
+            <tr>
+              <th class="col-owner sortable" data-sort="owner">账号</th>
+              <th class="col-bvid sortable" data-sort="bvid">BV号</th>
+              <th class="col-title sortable" data-sort="title">标题</th>
+              <th class="sortable" data-sort="view">播放</th>
+              <th class="sortable" data-sort="reply">评论</th>
+              <th class="sortable" data-sort="like">点赞</th>
+              <th class="sortable" data-sort="coin">投币</th>
+              <th class="sortable" data-sort="favorite">收藏</th>
+              <th class="sortable" data-sort="share">分享</th>
+              <th class="sortable" data-sort="hour_plays">本小时播放</th>
+              <th class="sortable" data-sort="hour_comments">本小时评论</th>
+              <th class="sortable" data-sort="yesterday_plays">昨日播放</th>
+              <th class="sortable" data-sort="today_plays">今日播放</th>
+              <th class="sortable" data-sort="today_comments">今日评论</th>
+              <th class="sortable" data-sort="yesterday_comments">昨日评论</th>
+              <th class="sortable" data-sort="published_days">已发布天数</th>
+              <th class="sortable" data-sort="published_at">发布时间</th>
+              <th class="sortable" data-sort="avg_daily_plays">日均播放</th>
+              <th class="sortable" data-sort="comment_rate">评论率</th>
+              <th class="sortable" data-sort="like_rate">点赞率</th>
+              <th class="sortable" data-sort="coin_rate">投币率</th>
+              <th class="sortable" data-sort="favorite_rate">收藏率</th>
+              <th class="sortable" data-sort="share_rate">分享率</th>
+              <th class="col-action">操作</th>
+            </tr>
+          </thead>
+          <tbody id="videoTableBody"></tbody>
+        </table>
+        <div id="emptyState" class="empty-state" hidden>没有匹配的视频</div>
+      </div>
+    </section>
+  </main>
+
+  <div id="chartTooltip" class="chart-tooltip" hidden></div>
+
+  <script src="./charts.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
