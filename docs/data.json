@@ -3006,8 +3006,8 @@
         },
         {
           "time": "2026-10-14 18:00",
-          "view": 6259,
-          "reply": 189,
+          "view": 6262,
+          "reply": 190,
           "like": 639,
           "coin": 1199,
           "favorite": 654,
@@ -3096,9 +3096,9 @@
         },
         {
           "time": "2026-10-14 18:00",
-          "view": 826,
-          "reply": 27,
-          "like": 72,
+          "view": 827,
+          "reply": 30,
+          "like": 73,
           "coin": 132,
           "favorite": 74,
           "share": 11
@@ -3178,7 +3178,7 @@
       ]
     }
   ],
-  "last_update": "2026-10-14 18:09:27",
+  "last_update": "2026-10-14 18:37:16",
   "last_error": "",
   "repo_url": "https://github.com/yinggege666666-alt/bili-video-stats"
 }
