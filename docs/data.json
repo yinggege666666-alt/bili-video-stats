@@ -2724,6 +2724,15 @@
           "coin": 1563,
           "favorite": 787,
           "share": 245
+        },
+        {
+          "time": "2026-10-14 08:00",
+          "view": 2945,
+          "reply": 125,
+          "like": 799,
+          "coin": 1563,
+          "favorite": 788,
+          "share": 245
         }
       ]
     },
@@ -4668,6 +4677,15 @@
           "coin": 1144,
           "favorite": 574,
           "share": 167
+        },
+        {
+          "time": "2026-10-14 08:00",
+          "view": 2204,
+          "reply": 117,
+          "like": 586,
+          "coin": 1144,
+          "favorite": 575,
+          "share": 167
         }
       ]
     },
@@ -5667,6 +5685,15 @@
           "coin": 1199,
           "favorite": 652,
           "share": 403
+        },
+        {
+          "time": "2026-10-14 08:00",
+          "view": 6207,
+          "reply": 186,
+          "like": 637,
+          "coin": 1199,
+          "favorite": 653,
+          "share": 403
         }
       ]
     },
@@ -5685,11 +5712,20 @@
           "coin": 2,
           "favorite": 6,
           "share": 1
+        },
+        {
+          "time": "2026-10-14 08:00",
+          "view": 372,
+          "reply": 11,
+          "like": 4,
+          "coin": 2,
+          "favorite": 6,
+          "share": 1
         }
       ]
     }
   ],
-  "last_update": "2026-10-14 04:49:39",
+  "last_update": "2026-10-14 08:16:35",
   "last_error": "",
   "repo_url": "https://github.com/yinggege666666-alt/bili-video-stats"
 }
